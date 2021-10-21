@@ -41,6 +41,7 @@ class TileHandler {
         SDL_Rect doorBL_tile;
         SDL_Rect doorBR_tile;
 
+
         SDL_Rect window;
         
     public:
@@ -49,6 +50,11 @@ class TileHandler {
 
             readTileMap();
             setTileRects();
+
+            window.x = 0;
+            window.y = 0;
+            window.w = SCREEN_WIDTH;
+            window.h = SCREEN_HEIGHT;
 
             background_texture = NULL;
             tilesheet_surface = IMG_Load("./images/tilesheet5.png");
@@ -79,10 +85,7 @@ class TileHandler {
         }
 
         void setTileRects() {
-            window.x = 0;
-            window.y = 0;
-            window.w = SCREEN_WIDTH;
-            window.h = SCREEN_HEIGHT;
+            
 
             // SDL_Rect wall_tile;
             wall_tile.x = 0;
@@ -176,8 +179,9 @@ class TileHandler {
             background_texture = SDL_CreateTextureFromSurface(background_renderer, tilesheet_surface);
 
             SDL_Rect dest;
-            dest.x = 0;
-            dest.y = 0;
+
+            dest.x = window.x;
+            dest.y = window.y;
             dest.w = 75;
             dest.h = 75;
 
@@ -247,7 +251,7 @@ class TileHandler {
                     dest.x += 75;
                 } 
                 dest.y += 75;
-                dest.x = 0;
+                dest.x = window.x;
             }
         }
 
