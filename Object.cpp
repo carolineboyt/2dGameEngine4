@@ -1,8 +1,8 @@
 #include "Object.h"
 
-GameObject::GameObject(const char* filename) {
+GameObject::GameObject() {
     texture = NULL;
-    surface = IMG_Load(filename);
+    surface = NULL;
 }
 
 void GameObject::render(SDL_Renderer* objectRenderer) {

@@ -8,13 +8,13 @@
 using namespace std;
 
 class GameObject {
-    private:
+    protected:
         SDL_Surface* surface;
         SDL_Texture* texture;
         SDL_Rect object;
     
     public:
-        GameObject(const char* filename);
+        GameObject();
 
         void setRect();
 
