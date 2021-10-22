@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+#define NUMBER_COINS 10
+
 GameEngine::GameEngine() {
     fps = FPS;
     frame_duration = FRAME_DURATION;
@@ -7,6 +9,13 @@ GameEngine::GameEngine() {
 
     player = new SpriteManager();
     background = new TileHandler();
+    int x = 200;
+
+    for (int i = 0; i < NUMBER_COINS; i++) {
+        Coin* new_coin = new Coin("./images/coin2.png", x);
+        coins.push_back(new_coin);
+        x += 200;
+    }
 }
 
 GameEngine::~GameEngine() {
@@ -44,6 +53,9 @@ void GameEngine::handleInput() {
                 case SDLK_RIGHT:
                     player->setState("running");
                     background->scroll();
+                    for (int i = 0; i < NUMBER_COINS; i++) {
+                        coins[i]->handleMovement();
+                    }
                     break;
                 default:
                     player->setState("idle");
@@ -72,6 +84,10 @@ void GameEngine::render() {
     SDL_RenderClear(game_renderer);
 
     background->renderBackground(game_renderer);
+
+    for (int i = 0; i < NUMBER_COINS; i++) {
+        coins[i]->render(game_renderer);
+    }
     
     player->render(game_renderer);
     SDL_RenderPresent(game_renderer);

@@ -16,9 +16,7 @@ class GameObject {
     public:
         GameObject();
 
-        void setRect();
-
-        void handleAnimation();
+        void setRect(int x);
 
         void render(SDL_Renderer* objectRenderer);
 

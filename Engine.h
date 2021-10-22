@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SpriteManager.h"
 #include "TileHandler.h"
+#include "Coin.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ class GameEngine {
         int frame_duration;
         SpriteManager* player;
         TileHandler* background;
+        vector<Coin*> coins;
 
     public:
         GameEngine();
