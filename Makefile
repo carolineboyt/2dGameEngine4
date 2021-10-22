@@ -10,7 +10,7 @@ CFLAGS = `sdl2-config --libs --cflags` -ggdb3 -O0 -Wall -lSDL2_image -lm
 HDRS = 
 
 # add source files here
-SRCS = main.cpp Engine.cpp SpriteManager.cpp Player.cpp Object.cpp
+SRCS = main.cpp Engine.cpp SpriteManager.cpp Player.cpp Object.cpp TileHandler.cpp
 
 # generate names of object files
 OBJS = $(SRCS:.cpp=.o)
