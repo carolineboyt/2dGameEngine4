@@ -43,6 +43,9 @@ class TileHandler {
 
 
         SDL_Rect window;
+        SDL_Texture* window_texture;
+
+        SDL_Rect screen;
         
     public:
         TileHandler() {
@@ -55,6 +58,11 @@ class TileHandler {
             window.y = 0;
             window.w = SCREEN_WIDTH;
             window.h = SCREEN_HEIGHT;
+
+            screen.x = 0;
+            screen.y = 0;
+            screen.w = SCREEN_WIDTH;
+            screen.h = SCREEN_HEIGHT;
 
             background_texture = NULL;
             tilesheet_surface = IMG_Load("./images/tilesheet5.png");
@@ -171,12 +179,96 @@ class TileHandler {
             doorBR_tile.h = tilesize;
         }
 
+        // void createBackgroundSurface(SDL_Renderer* background_renderer) {
+        //     background_texture = SDL_CreateTextureFromSurface(background_renderer, tilesheet_surface);
+        //     window_texture = SDL_CreateTexture(background_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
+        //     SDL_SetRenderTarget(background_renderer, window_texture);
+
+        //     SDL_Rect dest;
+
+        //     dest.x = window.x;
+        //     dest.y = window.y;
+        //     dest.w = 75;
+        //     dest.h = 75;
+
+        //     SDL_SetRenderDrawColor(background_renderer, 255, 255, 255, 255);
+        //     SDL_RenderFillRect(background_renderer, &window);
+
+        //     for (int i = 0; i < tiles.size(); i++) {
+        //         vector<int> tile_x = tiles.at(i);
+        //         for (int j = 0; j < tile_x.size(); j++) {
+        //             switch (tiles.at(i).at(j)) {
+        //                 case 0:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     break;
+        //                 case 1:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &floor_tile, &dest);
+        //                     break;
+        //                 case 2:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &subfloor_tile, &dest);
+        //                     break;
+        //                 case 3:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainTL_tile, &dest);
+        //                     break;
+        //                 case 4:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainTR_tile, &dest);
+        //                     break;
+        //                 case 5:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     break;
+        //                 case 6:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorTL_tile, &dest);
+        //                     break;
+        //                 case 7:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorTR_tile, &dest);
+        //                     break;
+        //                 case 8:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainBL_tile, &dest);
+        //                     break;
+        //                 case 9:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainBR_tile, &dest);
+        //                     break;
+        //                 case 11:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorML_tile, &dest);
+        //                     break;
+        //                 case 12:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorMR_tile, &dest);
+        //                     break;
+        //                 case 16:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorBL_tile, &dest);
+        //                     break;
+        //                 case 17:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+        //                     SDL_RenderCopy(background_renderer, background_texture, &doorBR_tile, &dest);
+        //                     break;
+        //                 default:
+        //                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+        //                     break;
+        //             }
+        //             dest.x += 75;
+        //         } 
+        //         dest.y += 75;
+        //         dest.x = window.x;
+        //     }
+        // }
+
         void scroll() {
-            
+            window.x += 10;
         }
 
         void renderBackground(SDL_Renderer* background_renderer) {
             background_texture = SDL_CreateTextureFromSurface(background_renderer, tilesheet_surface);
+            window_texture = SDL_CreateTexture(background_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
+            SDL_SetRenderTarget(background_renderer, window_texture);
 
             SDL_Rect dest;
 
@@ -253,6 +345,8 @@ class TileHandler {
                 dest.y += 75;
                 dest.x = window.x;
             }
+            SDL_SetRenderTarget(background_renderer, NULL);
+            SDL_RenderCopy(background_renderer, window_texture, &window, &screen);
         }
 
 };

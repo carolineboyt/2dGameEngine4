@@ -43,6 +43,7 @@ void GameEngine::handleInput() {
             switch (event.key.keysym.sym) {
                 case SDLK_RIGHT:
                     player->setState("running");
+                    background->scroll();
                     break;
                 default:
                     player->setState("idle");
@@ -54,7 +55,6 @@ void GameEngine::handleInput() {
             switch (event.key.keysym.sym) {
                 case SDLK_RIGHT:
                     player->setState("idle");
-                    background->scroll();
                     break;
                 default:
                     player->setState("idle");
