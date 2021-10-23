@@ -12,7 +12,6 @@ class SpriteManager {
     private:
         SDL_Rect running;
         SDL_Rect idle;
-        SDL_Rect jumping;
         SDL_Texture* sprite_texture;
         SDL_Surface* sprite_surface;
         SDL_Rect dest;

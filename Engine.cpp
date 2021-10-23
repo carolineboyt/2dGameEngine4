@@ -8,7 +8,7 @@ GameEngine::GameEngine() {
     game_running = true;
 
     player = new SpriteManager();
-    background = new TileHandler();
+    
     int x = 200;
 
     for (int i = 0; i < NUMBER_COINS; i++) {
@@ -41,6 +41,8 @@ void GameEngine::init() {
                     SCREEN_WIDTH,
                     SCREEN_HEIGHT, 0);
         game_renderer = SDL_CreateRenderer(game_window,-1,0);
+
+        background = new TileHandler(game_renderer);
 }
 
 void GameEngine::handleInput() {
@@ -83,7 +85,7 @@ void GameEngine::updateMechanics() {
 void GameEngine::render() {
     SDL_RenderClear(game_renderer);
 
-    background->renderBackground(game_renderer);
+    background->renderBackground();
 
     for (int i = 0; i < NUMBER_COINS; i++) {
         coins[i]->render(game_renderer);

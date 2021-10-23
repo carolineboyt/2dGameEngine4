@@ -41,24 +41,26 @@ class TileHandler {
         SDL_Rect doorBL_tile;
         SDL_Rect doorBR_tile;
 
+        SDL_Renderer* background_renderer;
 
         SDL_Rect window;
-        SDL_Texture* window_texture;
-
         SDL_Rect screen;
         
     public:
-        TileHandler();
+        TileHandler(SDL_Renderer*);
 
         void readTileMap();
 
         void setTileRects();
 
         void scroll() {
-            window.x += 10;
+            if (window.x > -2100)
+                window.x -= 10;
         }
 
-        void renderBackground(SDL_Renderer* background_renderer);
+        void createBackground();
+
+        void renderBackground();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "TileHandler.h"
 
-TileHandler::TileHandler() {
+TileHandler::TileHandler(SDL_Renderer* renderer) {
     tilesize = 105;
 
     readTileMap();
@@ -18,14 +18,16 @@ TileHandler::TileHandler() {
 
     background_texture = NULL;
     tilesheet_surface = IMG_Load("./images/tilesheet5.png");
+
+    background_renderer = renderer;
+
+    createBackground();
 }
 
 void TileHandler::readTileMap() {
     ifstream tileMapFile ("./tilemap.txt");
 
     string line;
-    int x = 0;
-    int y = 0;
 
     while (getline(tileMapFile, line)) {
         size_t pos = 0;
@@ -129,14 +131,20 @@ void TileHandler::setTileRects() {
 
 }
 
-void TileHandler::renderBackground(SDL_Renderer* background_renderer) {
+void TileHandler::createBackground() {
     background_texture = SDL_CreateTextureFromSurface(background_renderer, tilesheet_surface);
-    window_texture = SDL_CreateTexture(background_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
-    SDL_SetRenderTarget(background_renderer, window_texture);
+}
+
+void TileHandler::renderBackground() {
+    
+    // window_texture = SDL_CreateTexture(background_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    // SDL_SetRenderTarget(background_renderer, window_texture);
+
 
     SDL_Rect dest;
 
-    dest.x = 0;
+    dest.x = window.x;
     dest.y = 0;
     dest.w = 75;
     dest.h = 75;
@@ -207,8 +215,7 @@ void TileHandler::renderBackground(SDL_Renderer* background_renderer) {
             dest.x += 75;
         } 
         dest.y += 75;
-        dest.x = 0;
+        dest.x = window.x;
     }
-    SDL_SetRenderTarget(background_renderer, NULL);
-    SDL_RenderCopy(background_renderer, window_texture, &window, &screen);
+    // SDL_RenderCopy(background_renderer, window_texture, NULL, &screen);
 }

@@ -19,7 +19,7 @@ SpriteManager::SpriteManager() {
     dest.x = 35;
     dest.y = 300;
     dest.h = 174;
-    dest.w = 118.5;
+    dest.w = 118;
 
     framecounter = 0;
 
