@@ -15,6 +15,10 @@ SRCS = main.cpp Engine.cpp SpriteManager.cpp Object.cpp TileHandler.cpp Coin.cpp
 # generate names of object files
 OBJS = $(SRCS:.cpp=.o)
 
+SRC2 = particle_test.cpp ParticleSystem.cpp
+
+OBJ2 = $(SRC2:.cpp=.o)
+
 # name of executable
 EXEC = my_game
 

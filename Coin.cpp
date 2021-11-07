@@ -34,16 +34,14 @@ bool Coin::handleCollision(int player) {
 }
 
 void Coin::collisionResponse() {
-    particles->pe_init(filename, obj_renderer, object.x + 30, object.y + 30, 25, 25, 30);
+    particles->pe_init(filename, obj_renderer, object.x, object.y, 15, 15, 30);
     collided = true;
 }
 
 void Coin::handleMovement() {
     if(!collided) {
         object.x -= 10;
-    } else {
-        particles->pe_handleMovement();
-    }
+    } 
 }
 
 void Coin::update() {

@@ -18,8 +18,8 @@ class Particle {
         SDL_Texture* obj_texture;
         SDL_Surface* obj_surface;
 
-        // float x_pos;
-        // float y_pos;
+        float x_pos;
+        float y_pos;
         float x_vel;
         float y_vel;
 
@@ -37,7 +37,7 @@ class Particle {
             state = 0;
         }
 
-        void init(const char* graphic, SDL_Renderer* renderer, int start_x, int start_y, int width, int height, int lifetime, int x_vel, int y_vel);
+        void init(const char* graphic, SDL_Renderer* renderer, int start_x, int start_y, int width, int height, int lifetime, float x_vel, float y_vel);
 
         void handleMovement();
 
