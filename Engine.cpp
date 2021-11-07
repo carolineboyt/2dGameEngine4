@@ -8,14 +8,6 @@ GameEngine::GameEngine() {
     game_running = true;
 
     player = new SpriteManager();
-    
-    int x = 200;
-
-    for (int i = 0; i < NUMBER_COINS; i++) {
-        Coin* new_coin = new Coin("./images/coin2.png", x);
-        coins.push_back(new_coin);
-        x += 200;
-    }
 }
 
 GameEngine::~GameEngine() {
@@ -43,6 +35,16 @@ void GameEngine::init() {
         game_renderer = SDL_CreateRenderer(game_window,-1,0);
 
         background = new TileHandler(game_renderer);
+
+        int x = 200;
+        for (int i = 0; i < NUMBER_COINS; i++) {
+            Coin* new_coin = new Coin("./images/coin2.png", x, game_renderer);
+            coins.push_back(new_coin);
+            x += 200;
+        }
+
+        counter = new CoinCounter("./images/coin2.png", game_renderer);
+
 }
 
 void GameEngine::handleInput() {
@@ -57,6 +59,9 @@ void GameEngine::handleInput() {
                     background->scroll();
                     for (int i = 0; i < NUMBER_COINS; i++) {
                         coins[i]->handleMovement();
+                        if (coins[i]->handleCollision(player->getPos())) {
+                            counter->addCoin();
+                        } 
                     }
                     break;
                 default:
@@ -80,6 +85,10 @@ void GameEngine::handleInput() {
 
 void GameEngine::updateMechanics() {
     player->updateMovement();
+    for (int i = 0; i < NUMBER_COINS; i++) {
+        
+        coins[i]->update();
+    }
 }
 
 void GameEngine::render() {
@@ -88,8 +97,10 @@ void GameEngine::render() {
     background->renderBackground();
 
     for (int i = 0; i < NUMBER_COINS; i++) {
-        coins[i]->render(game_renderer);
+        coins[i]->render();
     }
+
+    counter->render();
     
     player->render(game_renderer);
     SDL_RenderPresent(game_renderer);

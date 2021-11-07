@@ -5,8 +5,10 @@ GameObject::GameObject() {
     surface = NULL;
 }
 
-void GameObject::render(SDL_Renderer* objectRenderer) {
-    texture = SDL_CreateTextureFromSurface(objectRenderer, surface);
 
-    SDL_RenderCopy(objectRenderer, texture, NULL, &object);
+
+void GameObject::render() {
+    texture = SDL_CreateTextureFromSurface(obj_renderer, surface);
+
+    SDL_RenderCopy(obj_renderer, texture, NULL, &object);
 }

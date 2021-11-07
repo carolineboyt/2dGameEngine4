@@ -31,6 +31,10 @@ class SpriteManager {
             }
         }
 
+        int getPos() {
+            return dest.x + dest.w;
+        }
+
         void updateMovement();
 
         void render(SDL_Renderer* object_renderer);

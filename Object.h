@@ -12,13 +12,17 @@ class GameObject {
         SDL_Surface* surface;
         SDL_Texture* texture;
         SDL_Rect object;
+
+        SDL_Renderer* obj_renderer;
     
     public:
         GameObject();
 
-        void setRect(int x);
+        void setRect(int x);      
 
-        void render(SDL_Renderer* objectRenderer);
+        void collisionResponse();
+
+        void render();
 
 };
 

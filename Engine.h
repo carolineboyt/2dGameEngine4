@@ -7,6 +7,7 @@
 #include "SpriteManager.h"
 #include "TileHandler.h"
 #include "Coin.h"
+#include "CoinCounter.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ class GameEngine {
         SpriteManager* player;
         TileHandler* background;
         vector<Coin*> coins;
+        CoinCounter* counter;
 
     public:
         GameEngine();
