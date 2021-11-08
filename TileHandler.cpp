@@ -17,7 +17,7 @@ TileHandler::TileHandler(SDL_Renderer* renderer) {
     screen.h = SCREEN_HEIGHT;
 
     background_texture = NULL;
-    tilesheet_surface = IMG_Load("./images/tilesheet5.png");
+    tilesheet_surface = IMG_Load("./images/tilesheet8.png");
 
     background_renderer = renderer;
 
@@ -165,46 +165,86 @@ void TileHandler::renderBackground() {
                 case 2:
                     SDL_RenderCopy(background_renderer, background_texture, &subfloor_tile, &dest);
                     break;
-                case 3:
+                case 30:
                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainTL_tile, &dest);
                     break;
-                case 4:
+                case 35:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &waterFountainTL_tile, &dest);
+                    break;
+                case 40:
                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &waterFountainTR_tile, &dest);
+                    break;
+                case 45:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainTR_tile, &dest);
                     break;
                 case 5:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     break;
-                case 6:
+                case 60:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorTL_tile, &dest);
+                    break;
+                 case 65:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorTL_tile, &dest);
                     break;
-                case 7:
+                case 70:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorTR_tile, &dest);
+                    break;
+                case 75:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorTR_tile, &dest);
                     break;
-                case 8:
+                case 80:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &waterFountainBL_tile, &dest);
+                    break;
+                case 85:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainBL_tile, &dest);
                     break;
-                case 9:
+                case 90:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &waterFountainBR_tile, &dest);
+                    break;
+                case 95:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &waterFountainBR_tile, &dest);
                     break;
-                case 11:
+                case 110:
                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorML_tile, &dest);
                     break;
-                case 12:
+                 case 115:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorML_tile, &dest);
+                    break;
+                case 120:
                     SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorMR_tile, &dest);
                     break;
-                case 16:
+                case 125:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorMR_tile, &dest);
+                    break;
+                case 160:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorBL_tile, &dest);
+                    break;
+                case 165:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorBL_tile, &dest);
                     break;
-                case 17:
+                case 170:
+                    SDL_RenderCopy(background_renderer, background_texture, &wall_tile, &dest);
+                    SDL_RenderCopy(background_renderer, background_texture, &doorBR_tile, &dest);
+                    break;
+                case 175:
                     SDL_RenderCopy(background_renderer, background_texture, &wall2_tile, &dest);
                     SDL_RenderCopy(background_renderer, background_texture, &doorBR_tile, &dest);
                     break;

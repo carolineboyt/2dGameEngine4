@@ -26,6 +26,8 @@ class TileHandler {
 
         SDL_Rect wall_tile;
         SDL_Rect wall2_tile;
+        SDL_Rect wall3_tile;
+        SDL_Rect wall4_tile;
         SDL_Rect floor_tile;
         SDL_Rect subfloor_tile;
 

@@ -50,9 +50,9 @@ void CoinCounter::updateTexture() {
     if ( !font ) {
         cout << "Failed to load font: " << TTF_GetError() << endl;
     }
-    SDL_Color Black = {0, 0, 0};
+    SDL_Color White = {255, 255, 255};
 
-    text_surface = TTF_RenderText_Solid(font, message, Black);
+    text_surface = TTF_RenderText_Solid(font, message, White);
     text_texture = SDL_CreateTextureFromSurface(obj_renderer, text_surface);
 }
 
